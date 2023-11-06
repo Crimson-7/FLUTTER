@@ -17,8 +17,15 @@ class ToDoTiles extends StatelessWidget {
         child: Row(
           children: [
             // task check box
-            Checkbox(value: isCompleted, onChanged: onChanged),
-            Text(taskName),
+            Checkbox(
+              value: isCompleted,
+              onChanged: onChanged,
+              activeColor: Colors.green),
+
+            Text(
+              taskName,
+              style: TextStyle(decoration:isCompleted ? TextDecoration.lineThrough:TextDecoration.none)
+            ),
           ],
         ),
 
