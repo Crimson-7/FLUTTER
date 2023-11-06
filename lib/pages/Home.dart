@@ -10,7 +10,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List todolist=[
-
+      ["TASK 1",true],
+      ["task 2",false]
 
 
 
@@ -27,8 +28,12 @@ class _HomeState extends State<Home> {
         centerTitle: true,
       ),
       body: ListView.builder(
-
-
+          itemCount: todolist.length,
+          itemBuilder:(context, index) {
+            return ToDoTiles(isCompleted: todolist[index][0],
+                taskName: todolist[index][1] ,
+                onChanged: (value) =>checkBoxChange );
+          },
       ),
 
 
