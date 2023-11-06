@@ -13,6 +13,7 @@ class ToDoTiles extends StatelessWidget {
       padding: const EdgeInsets.all(15.0),
       child: Container(
         padding: EdgeInsets.all(15),
+        decoration: BoxDecoration(color: Colors.indigo,borderRadius:BorderRadius.circular(15)),
         child: Row(
           children: [
             // task check box
@@ -20,9 +21,6 @@ class ToDoTiles extends StatelessWidget {
             Text(taskName),
           ],
         ),
-        decoration: BoxDecoration(color: Colors.indigo,borderRadius:BorderRadius.circular(15)),
-
-
 
       ),
     );
