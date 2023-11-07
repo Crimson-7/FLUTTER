@@ -20,7 +20,7 @@ class ToDoTiles extends StatelessWidget {
       child: Slidable(
         endActionPane: ActionPane(
           motion: StretchMotion(),
-          children: [
+          children:[
                   SlidableAction(onPressed: Delete,
                   icon: Icons.delete_outlined,
                     backgroundColor: Colors.redAccent,

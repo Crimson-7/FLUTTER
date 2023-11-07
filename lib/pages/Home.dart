@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:newflutter/database/databse.dart';
 import 'package:newflutter/pages/ToDo.dart';
 import 'package:newflutter/utils/Dialogbox.dart';
 
@@ -10,23 +12,24 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  //reference hive
+  final _myBox= Hive.openBox('newBox');
+  toDoDataBase db= toDoDataBase();
+
   final _controller = TextEditingController();
-  List todolist=[
-      ["TASK 1",true],
-      ["task 2",false],
-      ["Task 3",true]
-  ];
+
   // checkbox method
   void checkBoxChange(bool? value,int index){
 setState(() {
-  todolist[index][1]=!todolist[index][1];
+  db.todolist[index][1]=!db.todolist[index][1];
 });
 
   }
   //saved the Task
   void saved() {
     setState(() {
-      todolist.add([_controller.text, false]);
+      db.todolist.add([_controller.text, false]);
       _controller.clear(); // Clear the text field
     });
     Navigator.of(context).pop();
@@ -51,7 +54,7 @@ setState(() {
   }
   void deleteTask(int index){
       setState(() {
-        todolist.removeAt(index);
+        db.todolist.removeAt(index);
       });
 
   }
@@ -71,10 +74,10 @@ setState(() {
 
       ),
       body: ListView.builder(
-          itemCount: todolist.length,
+          itemCount: db.todolist.length,
           itemBuilder:(context, index) {
-            return ToDoTiles(taskName: todolist[index][0],
-                isCompleted: todolist[index][1] ,
+            return ToDoTiles(taskName: db.todolist[index][0],
+                isCompleted: db.todolist[index][1] ,
                 onChanged: (value) =>checkBoxChange(value,index),
               Delete: (p0) => deleteTask(index),
             );
