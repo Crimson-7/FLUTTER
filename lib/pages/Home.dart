@@ -49,7 +49,12 @@ setState(() {
 
 
   }
+  void deleteTask(int index){
+      setState(() {
+        todolist.removeAt(index);
+      });
 
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +75,10 @@ setState(() {
           itemBuilder:(context, index) {
             return ToDoTiles(taskName: todolist[index][0],
                 isCompleted: todolist[index][1] ,
-                onChanged: (value) =>checkBoxChange(value,index) );
+                onChanged: (value) =>checkBoxChange(value,index),
+              Delete: (p0) => deleteTask(index),
+            );
+
           },
       ),
 
