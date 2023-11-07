@@ -10,7 +10,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final _controller=TextEditingController();
+  final _controller = TextEditingController();
   List todolist=[
       ["TASK 1",true],
       ["task 2",false],
@@ -42,7 +42,7 @@ setState(() {
       {
           return DialogBox(
             controller:_controller,
-            onsave: saved ,
+            onSave: saved ,
             onCancel:() => Navigator.of(context).pop(),);
       },
           );
