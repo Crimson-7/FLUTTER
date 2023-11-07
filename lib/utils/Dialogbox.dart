@@ -3,8 +3,8 @@ import 'package:newflutter/utils/Buttons.dart';
 
 class DialogBox extends StatelessWidget {
   final controller;
-  VoidCallback onsave;
-  VoidCallback onCancel;
+  final VoidCallback onsave;
+  final VoidCallback onCancel;
   DialogBox({super.key, required this.controller, required this.onsave, required this.onCancel});
 
   @override
