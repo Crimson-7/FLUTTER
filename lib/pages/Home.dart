@@ -14,8 +14,22 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   //reference hive
-  final _myBox= Hive.openBox('newBox');
+  final _myBox= Hive.box('newBox');
   toDoDataBase db= toDoDataBase();
+
+  @override
+  void initState() {
+    if (_myBox.get("TODOLIST")==null){
+      db.initList();
+
+    }
+    else{
+      db.loadData();
+    }
+    super.initState();
+  }
+
+
 
   final _controller = TextEditingController();
 
@@ -24,7 +38,7 @@ class _HomeState extends State<Home> {
 setState(() {
   db.todolist[index][1]=!db.todolist[index][1];
 });
-
+  db.updateData();
   }
   //saved the Task
   void saved() {
@@ -32,6 +46,7 @@ setState(() {
       db.todolist.add([_controller.text, false]);
       _controller.clear(); // Clear the text field
     });
+    db.updateData();
     Navigator.of(context).pop();
   }
 
@@ -56,7 +71,7 @@ setState(() {
       setState(() {
         db.todolist.removeAt(index);
       });
-
+      db.updateData();
   }
 
   @override

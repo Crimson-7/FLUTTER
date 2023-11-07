@@ -6,7 +6,7 @@ List todolist=[];
 
 
 
-  final _myBox= Hive.openBox('newBox');
+  final _myBox= Hive.box('newBox');
 
 void initList(){
 todolist=[ ["TASK 1",true],
@@ -15,5 +15,12 @@ todolist=[ ["TASK 1",true],
 
 
 }
+void loadData(){
+todolist =_myBox.get("TODOLIST") ;
 
+}
+  void updateData(){
+  _myBox.put("TODOLIST", todolist);
+
+  }
 }
